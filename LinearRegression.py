@@ -13,6 +13,7 @@ from sklearn.linear_model import LinearRegression
 import datetime
 import matplotlib.pyplot as plt
 from matplotlib import style
+import pickle
 
 style.use('ggplot')
 
@@ -52,9 +53,19 @@ clf = LinearRegression(n_jobs=-1) # To multiple threads in parallel
 #clf = svm.SVR(kernel='poly') 
 
 clf.fit(X_train,y_train)  # fit is for training
+
+#Save Classifier
+#Required if and only if we want to use the classifier later
+with open('LinearRegression.pickle','wb') as f:
+    pickle.dump(clf,f)
+
+#Load Saved Classifier
+#Not necessarily required, just reloading the classifier saved at previous step for demo purpose 
+pickle_in = open('LinearRegression.pickle','rb')
+clf = pickle.load(pickle_in)
+
 accuracy = clf.score(X_test,y_test)  # score is for testing
 
-print("Accuracy is",accuracy)
 #>>    Accuracy is 0.970299355595
 
 forecast_set = clf.predict(X_lately)
