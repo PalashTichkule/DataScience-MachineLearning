@@ -65,7 +65,7 @@ pickle_in = open('LinearRegression.pickle','rb')
 clf = pickle.load(pickle_in)
 
 accuracy = clf.score(X_test,y_test)  # score is for testing
-
+print("Accuracy is",accuracy)
 #>>    Accuracy is 0.970299355595
 
 forecast_set = clf.predict(X_lately)
@@ -90,4 +90,3 @@ plt.legend(loc=4)
 plt.xlabel('Date')
 plt.ylabel('Price')
 plt.show()
-
