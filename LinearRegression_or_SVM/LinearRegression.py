@@ -8,7 +8,7 @@ Created on Tue Jul  7 20:00:09 2018
 import quandl
 import math
 import numpy as np
-from sklearn import preprocessing , cross_validation , svm
+from sklearn import preprocessing , model_selection , svm
 from sklearn.linear_model import LinearRegression
 import datetime
 import matplotlib.pyplot as plt
@@ -45,7 +45,7 @@ X = X[:-forecast_out]
 df.dropna(inplace=True)
 y = np.array(df['label'])
 
-X_train , X_test , y_train , y_test = cross_validation.train_test_split(X,y,test_size = 0.2)
+X_train , X_test , y_train , y_test = model_selection.train_test_split(X,y,test_size = 0.2)
 
 #clf = LinearRegression()
 clf = LinearRegression(n_jobs=-1) # To multiple threads in parallel
